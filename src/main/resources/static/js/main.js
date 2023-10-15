@@ -16,7 +16,7 @@ const colors = [
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
 
-function connect(event) {
+const connect = (event) => {
     username = document.querySelector('#name').value.trim();
 
     if (username) {
@@ -32,7 +32,7 @@ function connect(event) {
 }
 
 
-function onConnected() {
+const onConnected = () => {
     // Subscribe to the Public Topic
     stompClient.subscribe('/topic/public', onMessageReceived);
 
@@ -46,13 +46,13 @@ function onConnected() {
 }
 
 
-function onError() {
+const onError = () => {
     connectingElement.textContent = 'Could not connect to WebSocket server. Please refresh this page to try again!';
     connectingElement.style.color = 'red';
 }
 
 
-function sendMessage(event) {
+const sendMessage = (event) => {
     let messageContent = messageInput.value.trim();
     if (messageContent && stompClient) {
         let chatMessage = {
@@ -67,7 +67,7 @@ function sendMessage(event) {
 }
 
 
-function onMessageReceived(payload) {
+const onMessageReceived = (payload) => {
     let message = JSON.parse(payload.body);
 
     let messageElement = document.createElement('li');
@@ -106,7 +106,7 @@ function onMessageReceived(payload) {
 }
 
 
-function getAvatarColor(messageSender) {
+const getAvatarColor = (messageSender) => {
     let hash = 0;
     for (let i = 0; i < messageSender.length; i++) {
         hash = 31 * hash + messageSender.charCodeAt(i);
